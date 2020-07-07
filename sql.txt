@@ -1,0 +1,30 @@
+DROP TABLE EMP_ACTIVITY;
+DROP TABLE ACTIVITY_LOG;
+DROP TABLE EMPLOYEE;
+
+CREATE TABLE EMPLOYEE (
+    id int AUTO_INCREMENT,
+    email varchar(255),
+    first_name varchar(50) NOT NULL,
+    last_name varchar(50) NOT NULL,
+    phone varchar(12),
+    admin char(1),
+    active char(1),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE ACTIVITY_LOG (
+    id int AUTO_INCREMENT,
+    start_datetime DATETIME NOT NULL,
+    end_datetime DATETIME,
+    note varchar(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE EMP_ACTIVITY (
+    empid int NOT NULL,
+    activityid int NOT NULL,
+    FOREIGN KEY (empid) REFERENCES EMPLOYEE (id),
+    FOREIGN KEY (activityid) REFERENCES ACTIVITY_LOG (id)
+);
+
